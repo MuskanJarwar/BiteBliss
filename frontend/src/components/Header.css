@@ -1,0 +1,106 @@
+.hero-header {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.5rem;
+  margin: 2rem auto 2.5rem auto;
+  max-width: 1100px;
+  min-height: 340px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+
+.hero-overlay {
+  background: rgba(255, 112, 67, 0.7); /* more transparent orange */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 1.5rem;
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  padding: 3.5rem 2.5rem;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18); /* for readability */
+}
+
+.hero-content h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin: 0 0 1.2rem 0;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.hero-content h1 span {
+  color: #fff;
+  font-weight: 700;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+  color: #fffbe7;
+  max-width: 480px;
+}
+
+.hero-btn {
+  background: #fff;
+  color: #FF7043;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.6rem 1.4rem;   /* smaller vertical and horizontal padding */
+  font-size: 1rem;          /* slightly smaller font */
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.2s, color 0.2s;
+  width: auto;              /* let the button size to its content */
+  min-width: 100px;
+  max-width: 220px;
+}
+
+.hero-btn:hover {
+  background: #ffe0d3;
+  color: #d84315;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 320px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .hero-header {
+    min-height: 260px;
+    margin: 1rem 0.5rem 1.5rem 0.5rem;
+  }
+  .hero-content {
+    padding: 2rem 1rem;
+  }
+  .hero-btn {
+    width: 100%;
+    min-width: 120px;
+  }
+} 
