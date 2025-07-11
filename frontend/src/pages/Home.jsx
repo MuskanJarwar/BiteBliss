@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import ExploreMenu from '../components/ExploreMenu';
 import TopDishes from '../components/TopDishes';
+import Footer from '../components/Footer';
+import DownloadApp from '../components/DownloadApp';
 
 const Home = () => {
   const [category, setCategory] = useState("All");
@@ -13,10 +15,8 @@ const Home = () => {
       <Header />
       <ExploreMenu category={category} setCategory={setCategory} />
       <TopDishes />
-      {/* FoodList, Footer will go here */}
-      <main>
-        <div style={{height: '40vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: '#aaa'}}>Food list coming soon...</div>
-      </main>
+      <DownloadApp />
+      <Footer />
     </>
   );
 };
