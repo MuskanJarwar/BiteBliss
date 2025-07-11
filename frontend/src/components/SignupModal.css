@@ -11,14 +11,24 @@
 .signup-modal {
   background: #fff;
   border-radius: 12px;
-  padding: 2.2rem 2.5rem 1.5rem 2.5rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  min-width: 340px;
-  max-width: 95vw;
+  min-width: 270px;
+  max-width: 90vw;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 500px) {
+  .signup-modal {
+    min-width: 0;
+    width: 95vw;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  }
 }
 
 .signup-modal-close {
@@ -106,4 +116,11 @@
 
 .signup-login-link a:hover {
   text-decoration: underline;
+}
+
+.signup-error {
+  color: #d84315;
+  font-size: 0.97rem;
+  margin: -0.7rem 0 0.7rem 0.1rem;
+  text-align: left;
 } 
