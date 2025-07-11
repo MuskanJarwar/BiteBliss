@@ -11,10 +11,10 @@
 .signup-modal {
   background: #fff;
   border-radius: 12px;
-  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  padding: 2.2rem 2.5rem 1.5rem 2.5rem;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  min-width: 270px;
-  max-width: 90vw;
+  min-width: 340px;
+  max-width: 95vw;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
 
 .signup-modal h2 {
   margin: 0 0 1.2rem 0;
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #222;
 }
@@ -58,10 +58,10 @@
 .signup-form input[type='text'],
 .signup-form input[type='email'],
 .signup-form input[type='password'] {
-  padding: 0.9rem 1rem;
+  padding: 1.1rem 1.1rem;
   border: 1.5px solid #e2e2e2;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   outline: none;
   transition: border 0.2s;
 }
@@ -75,8 +75,8 @@
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 0.9rem 0;
-  font-size: 1.1rem;
+  padding: 1.1rem 0;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 0.5rem;
@@ -103,7 +103,7 @@
 .signup-login-link {
   margin-top: 1.2rem;
   text-align: left;
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: #888;
 }
 
