@@ -3,7 +3,6 @@ import './SignupModal.css';
 
 function SignupModal({ open, onClose }) {
   const [showLogin, setShowLogin] = useState(false);
-  // Reset to signup form every time modal is opened
   useEffect(() => {
     if (open) setShowLogin(false);
   }, [open]);
@@ -20,11 +19,12 @@ function SignupModal({ open, onClose }) {
   });
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
-
   // Login state
   const [loginFields, setLoginFields] = useState({ email: '', password: '' });
   const [loginTouched, setLoginTouched] = useState({});
   const [loginErrors, setLoginErrors] = useState({});
+  // Popup state
+  const [popup, setPopup] = useState({ show: false, message: '', success: false });
 
   const validate = (name, value) => {
     switch (name) {
@@ -90,7 +90,7 @@ function SignupModal({ open, onClose }) {
     setErrors((prev) => ({ ...prev, [name]: validate(name, type === 'checkbox' ? checked : value) }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
     Object.keys(fields).forEach((key) => {
@@ -99,8 +99,30 @@ function SignupModal({ open, onClose }) {
     setErrors(newErrors);
     setTouched(Object.keys(fields).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
     if (Object.values(newErrors).every((err) => !err)) {
-      alert('Sign up successful!');
-      onClose();
+      // API call to backend
+      try {
+        const res = await fetch('/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: fields.name,
+            email: fields.email,
+            password: fields.password,
+            city: fields.city,
+            country: fields.country,
+            street: fields.street,
+          }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setPopup({ show: true, message: data.message || 'Signup successful!', success: true });
+          setTimeout(() => { setPopup({ show: false, message: '', success: false }); onClose(); }, 1500);
+        } else {
+          setPopup({ show: true, message: data.message || 'Signup failed.', success: false });
+        }
+      } catch (err) {
+        setPopup({ show: true, message: 'Network error.', success: false });
+      }
     }
   };
 
@@ -119,7 +141,7 @@ function SignupModal({ open, onClose }) {
     setLoginErrors((prev) => ({ ...prev, [name]: validateLogin(name, value) }));
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
     Object.keys(loginFields).forEach((key) => {
@@ -128,8 +150,26 @@ function SignupModal({ open, onClose }) {
     setLoginErrors(newErrors);
     setLoginTouched(Object.keys(loginFields).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
     if (Object.values(newErrors).every((err) => !err)) {
-      alert('Login successful!');
-      onClose();
+      // API call to backend
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: loginFields.email,
+            password: loginFields.password,
+          }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setPopup({ show: true, message: data.message || 'Login successful!', success: true });
+          setTimeout(() => { setPopup({ show: false, message: '', success: false }); onClose(); }, 1500);
+        } else {
+          setPopup({ show: true, message: data.message || 'Login failed.', success: false });
+        }
+      } catch (err) {
+        setPopup({ show: true, message: 'Network error.', success: false });
+      }
     }
   };
 
@@ -275,6 +315,9 @@ function SignupModal({ open, onClose }) {
               <a href="#" onClick={e => { e.preventDefault(); setShowLogin(false); }}>Signup here</a>
             </div>
           </>
+        )}
+        {popup.show && (
+          <div className={`signup-popup ${popup.success ? 'success' : 'error'}`}>{popup.message}</div>
         )}
       </div>
     </div>
